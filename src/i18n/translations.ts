@@ -44,6 +44,13 @@ export const translations = {
       label: "Selected Work",
       title: "Projects we're proud of.",
       cs2tools: "A utility toolkit for Counter-Strike 2 players with advanced features and clean UI.",
+      etefit: "Your personal AI-powered fitness & wellness assistant.",
+      status: {
+        released: "Released",
+        construction: "Under Construction",
+        beta: "Experimental / Beta",
+        discontinued: "Discontinued",
+      },
     },
     process: {
       label: "How We Work",
