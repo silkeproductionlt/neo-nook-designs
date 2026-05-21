@@ -142,6 +142,13 @@ export const translations = {
       label: "Pasirinkti darbai",
       title: "Projektai, kuriais didžiuojamės.",
       cs2tools: "Įrankių rinkinys Counter-Strike 2 žaidėjams su pažangiomis funkcijomis ir švaria sąsaja.",
+      etefit: "Jūsų asmeninis AI pagrįstas kūno rengybos ir sveikatingumo asistentas.",
+      status: {
+        released: "Išleista",
+        construction: "Kuriama",
+        beta: "Eksperimentinė / Beta",
+        discontinued: "Nebepalaikoma",
+      },
     },
     process: {
       label: "Kaip dirbame",
