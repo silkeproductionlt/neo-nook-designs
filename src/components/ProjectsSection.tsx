@@ -61,7 +61,7 @@ const ProjectsSection = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+              className="group bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
               <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
                   {t.projects.status[project.status]}
