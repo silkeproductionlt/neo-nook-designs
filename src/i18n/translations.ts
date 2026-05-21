@@ -145,6 +145,7 @@ export const translations = {
       cs2tools: "Įrankių rinkinys Counter-Strike 2 žaidėjams su pažangiomis funkcijomis ir švaria sąsaja.",
       etefit: "Jūsų asmeninis AI pagrįstas kūno rengybos ir sveikatingumo asistentas.",
       status: {
+        fullyReleased: "Pilnai išleista",
         released: "Išleista",
         construction: "Kuriama",
         beta: "Eksperimentinė / Beta",
