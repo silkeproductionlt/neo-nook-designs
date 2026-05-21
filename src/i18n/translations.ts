@@ -44,6 +44,14 @@ export const translations = {
       label: "Selected Work",
       title: "Projects we're proud of.",
       cs2tools: "A utility toolkit for Counter-Strike 2 players with advanced features and clean UI.",
+      etefit: "Your personal AI-powered fitness & wellness assistant.",
+      status: {
+        fullyReleased: "Fully Released",
+        released: "Released",
+        construction: "Under Construction",
+        beta: "Experimental / Beta",
+        discontinued: "Discontinued",
+      },
     },
     process: {
       label: "How We Work",
@@ -135,6 +143,14 @@ export const translations = {
       label: "Pasirinkti darbai",
       title: "Projektai, kuriais didžiuojamės.",
       cs2tools: "Įrankių rinkinys Counter-Strike 2 žaidėjams su pažangiomis funkcijomis ir švaria sąsaja.",
+      etefit: "Jūsų asmeninis AI pagrįstas kūno rengybos ir sveikatingumo asistentas.",
+      status: {
+        fullyReleased: "Pilnai išleista",
+        released: "Išleista",
+        construction: "Kuriama",
+        beta: "Eksperimentinė / Beta",
+        discontinued: "Nebepalaikoma",
+      },
     },
     process: {
       label: "Kaip dirbame",

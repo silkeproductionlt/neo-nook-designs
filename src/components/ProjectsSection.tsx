@@ -2,15 +2,39 @@ import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
 
+type StatusKey = "fullyReleased" | "released" | "construction" | "beta" | "discontinued";
+
+const statusStyles: Record<StatusKey, string> = {
+  fullyReleased: "bg-green-500/10 text-green-600 dark:text-green-400 ring-1 ring-green-500/20",
+  released: "bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/20",
+  construction: "bg-orange-500/10 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/20",
+  beta: "bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20",
+  discontinued: "bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20",
+};
+
+const statusDot: Record<StatusKey, string> = {
+  fullyReleased: "bg-green-500",
+  released: "bg-blue-500",
+  construction: "bg-orange-500",
+  beta: "bg-purple-500",
+  discontinued: "bg-gray-500",
+};
+
 const ProjectsSection = () => {
   const { t } = useLanguage();
 
-  const projects = [
+  const projects: { title: string; description: string; url: string; status: StatusKey }[] = [
     {
       title: "CS2 Tools",
       description: t.projects.cs2tools,
       url: "https://cs2tools.netlify.app",
-      tags: ["React", "Netlify", "Game Tools"],
+      status: "released",
+    },
+    {
+      title: "EteFit",
+      description: t.projects.etefit,
+      url: "https://etefit.netlify.app",
+      status: "construction",
     },
   ];
 
@@ -53,11 +77,10 @@ const ProjectsSection = () => {
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                    {tag}
-                  </span>
-                ))}
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
+                  {t.projects.status[project.status]}
+                </span>
               </div>
             </motion.a>
           ))}
