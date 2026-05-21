@@ -76,7 +76,7 @@ const ProjectsSection = () => {
               <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
                   {t.projects.status[project.status]}
