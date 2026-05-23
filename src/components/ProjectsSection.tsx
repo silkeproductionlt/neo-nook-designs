@@ -61,22 +61,22 @@ const ProjectsSection = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
+              className="group relative overflow-hidden bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 hover:border-primary/25 transition-all duration-300 flex flex-col h-full before:content-[''] before:absolute before:-top-1/2 before:-left-1/2 before:w-[200%] before:h-[200%] before:bg-[linear-gradient(135deg,hsl(193_100%_50%/0.10),hsl(125_98%_78%/0.18))] before:rotate-[10deg] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:pointer-events-none"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="flex items-start justify-between mb-5">
+              <div className="relative flex items-start justify-between mb-5">
                 <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
                 <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+              <p className="relative text-muted-foreground mb-6 leading-relaxed text-sm">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="relative flex flex-wrap gap-2 mt-auto">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
                   {t.projects.status[project.status]}
