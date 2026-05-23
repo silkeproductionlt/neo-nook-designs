@@ -73,10 +73,10 @@ const ProjectsSection = () => {
                 </h3>
                 <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+              <p className="relative text-muted-foreground mb-6 leading-relaxed text-sm">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="relative flex flex-wrap gap-2 mt-auto">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
                   {t.projects.status[project.status]}
