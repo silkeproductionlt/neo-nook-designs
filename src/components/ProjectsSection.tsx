@@ -67,7 +67,7 @@ const ProjectsSection = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="flex items-start justify-between mb-5">
+              <div className="relative flex items-start justify-between mb-5">
                 <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
