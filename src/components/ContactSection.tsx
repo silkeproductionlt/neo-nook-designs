@@ -14,7 +14,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32">
+    <section id="contact" className="section-padding">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-20"
@@ -100,10 +100,7 @@ const ContactSection = () => {
                 placeholder={t.contact.messagePlaceholder}
               />
             </div>
-            <button
-              type="submit"
-              className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl gradient-bg text-primary-foreground font-heading text-sm font-semibold tracking-wide hover:opacity-90 transition-opacity duration-200 shadow-lg shadow-primary/25"
-            >
+            <button type="submit" className="btn-primary">
               {submitted ? t.contact.sent : t.contact.send}
               <ArrowRight className="w-4 h-4" />
             </button>
