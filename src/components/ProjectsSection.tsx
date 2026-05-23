@@ -61,7 +61,7 @@ const ProjectsSection = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
+              className="group relative overflow-hidden bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 hover:border-primary/25 transition-all duration-300 flex flex-col h-full before:content-[''] before:absolute before:-top-1/2 before:-left-1/2 before:w-[200%] before:h-[200%] before:bg-[linear-gradient(135deg,hsl(193_100%_50%/0.10),hsl(125_98%_78%/0.18))] before:rotate-[10deg] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:pointer-events-none"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
