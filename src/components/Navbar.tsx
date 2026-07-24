@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LangSwitcher from "@/components/LangSwitcher";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { getLenis } from "@/hooks/useLenis";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +24,14 @@ const Navbar = () => {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const target = document.querySelector(href) as HTMLElement | null;
+    if (!target) return;
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -80, duration: 1.4 });
+    } else {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
