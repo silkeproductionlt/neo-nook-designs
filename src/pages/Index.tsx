@@ -10,8 +10,10 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  useLenis();
   return (
     <div className="min-h-screen bg-background">
+
       <Navbar />
       <HeroSection />
       
