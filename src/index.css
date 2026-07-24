@@ -83,7 +83,47 @@
   }
 
   .gradient-bg {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(135deg, hsl(193 100% 50%), hsl(125 98% 78%));
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    isolation: isolate;
+  }
+
+  .gradient-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .gradient-bg > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .gradient-bg:hover::before {
+    left: 150%;
+  }
+
+  .gradient-bg:hover {
+    transform: translateY(-3px) scale(1.03);
+    filter: brightness(1.08);
+    box-shadow:
+      0 12px 30px hsl(193 100% 50% / 0.35),
+      0 0 35px hsl(125 98% 78% / 0.25);
   }
 
   .gradient-bg-subtle {
