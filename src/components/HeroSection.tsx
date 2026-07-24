@@ -12,8 +12,8 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 gradient-bg-subtle" />
-      <div className="gradient-blob absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-primary/10 blur-3xl -translate-y-1/2 translate-x-1/3" />
-      <div className="gradient-blob absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[hsl(125_98%_78%)]/20 blur-3xl translate-y-1/2 -translate-x-1/3" style={{ animationDelay: "-7s" }} />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-primary/5 blur-3xl translate-y-1/2 -translate-x-1/3" />
 
       <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
         <motion.div

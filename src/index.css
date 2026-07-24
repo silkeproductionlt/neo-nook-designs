@@ -87,23 +87,6 @@
   }
 
   .gradient-bg-subtle {
-    background: linear-gradient(135deg, hsl(193 100% 96%) 0%, hsl(160 90% 95%) 25%, hsl(125 98% 96%) 50%, hsl(193 100% 95%) 75%, hsl(var(--secondary)) 100%);
-    background-size: 300% 300%;
-    animation: gradient-shift 18s ease-in-out infinite;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .gradient-blob {
-    animation: blob-float 14s ease-in-out infinite;
-  }
-
-  @keyframes blob-float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -40px) scale(1.1); }
-    66% { transform: translate(-20px, 30px) scale(0.95); }
+    background: linear-gradient(180deg, hsl(193 100% 96%) 0%, hsl(125 98% 96%) 50%, hsl(var(--secondary)) 100%);
   }
 }
