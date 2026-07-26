@@ -87,6 +87,6 @@
   }
 
   .gradient-bg-subtle {
-    background: linear-gradient(180deg, hsl(193 100% 96%) 0%, hsl(125 98% 96%) 50%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(180deg, hsl(193 60% 12%) 0%, hsl(125 40% 12%) 50%, hsl(var(--background)) 100%);
   }
 }
