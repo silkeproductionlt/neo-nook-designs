@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import { useLenis } from "@/hooks/useLenis";
-import ScrollProgress from "@/components/ScrollProgress";
 
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -14,7 +13,7 @@ const Index = () => {
   useLenis();
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgress />
+
       <Navbar />
       <HeroSection />
       
