@@ -1,58 +1,59 @@
-import { Code, Palette, Gauge, Monitor } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] as const },
-  }),
-};
 
 const ServicesSection = () => {
   const { t } = useLanguage();
 
   const services = [
-    { icon: Code, title: t.services.frontEnd, desc: t.services.frontEndDesc },
-    { icon: Palette, title: t.services.webDesign, desc: t.services.webDesignDesc },
-    { icon: Gauge, title: t.services.performance, desc: t.services.performanceDesc },
-    { icon: Monitor, title: t.services.redesign, desc: t.services.redesignDesc },
+    { title: t.services.frontEnd, desc: t.services.frontEndDesc },
+    { title: t.services.webDesign, desc: t.services.webDesignDesc },
+    { title: t.services.performance, desc: t.services.performanceDesc },
+    { title: t.services.redesign, desc: t.services.redesignDesc },
   ];
 
   return (
-    <section id="services" className="py-32 bg-secondary">
+    <section id="services" className="py-32 md:py-40 border-t border-border">
       <div className="container mx-auto px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-4">{t.services.label}</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight">
-            {t.services.title}
-          </h2>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 md:mb-28">
+          <div className="md:col-span-4 flex items-start gap-3">
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground tabular-nums pt-1">
+              (01)
+            </span>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">
+              {t.services.label}
+            </span>
+          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-8 font-heading text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter leading-[0.95]"
+          >
+            {t.services.title.replace(/\.$/, "")}
+            <span className="text-primary">.</span>
+          </motion.h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {services.map(({ icon: Icon, title, desc }, i) => (
+        <div className="border-t border-border">
+          {services.map((s, i) => (
             <motion.div
-              key={title}
-              className="bg-card rounded-2xl p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-border"
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
+              key={s.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              variants={fadeUp}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 py-8 md:py-10 border-b border-border hover:bg-secondary/40 transition-colors duration-500 px-2 -mx-2"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                <Icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-heading text-lg font-semibold mb-3">{title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{desc}</p>
+              <span className="md:col-span-1 text-xs uppercase tracking-[0.18em] text-muted-foreground tabular-nums pt-2">
+                0{i + 1}
+              </span>
+              <h3 className="md:col-span-5 font-heading text-2xl md:text-4xl font-medium tracking-tight group-hover:text-primary transition-colors duration-500">
+                {s.title}
+              </h3>
+              <p className="md:col-span-5 md:col-start-8 text-muted-foreground leading-relaxed text-base max-w-md">
+                {s.desc}
+              </p>
             </motion.div>
           ))}
         </div>

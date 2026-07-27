@@ -1,83 +1,87 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
 
 type StatusKey = "fullyReleased" | "released" | "construction" | "beta" | "discontinued";
 
-const statusStyles: Record<StatusKey, string> = {
-  fullyReleased: "bg-green-500/10 text-green-600 dark:text-green-400 ring-1 ring-green-500/20",
-  released: "bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/20",
-  construction: "bg-orange-500/10 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/20",
-  beta: "bg-purple-500/10 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20",
-  discontinued: "bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20",
-};
-
 const statusDot: Record<StatusKey, string> = {
-  fullyReleased: "bg-green-500",
-  released: "bg-blue-500",
-  construction: "bg-orange-500",
-  beta: "bg-purple-500",
-  discontinued: "bg-gray-500",
+  fullyReleased: "bg-green-400",
+  released: "bg-sky-400",
+  construction: "bg-orange-400",
+  beta: "bg-purple-400",
+  discontinued: "bg-neutral-500",
 };
 
 const ProjectsSection = () => {
   const { t } = useLanguage();
 
-  const projects: { title: string; description: string; url: string; status: StatusKey }[] = [
+  const projects: { title: string; description: string; url: string; status: StatusKey; year: string }[] = [
     {
       title: "CS2 Tools",
       description: t.projects.cs2tools,
       url: "https://cs2tools.netlify.app",
       status: "released",
+      year: "2025",
     },
     {
       title: "EteFit",
       description: t.projects.etefit,
       url: "https://etefit.netlify.app",
       status: "construction",
+      year: "2026",
     },
   ];
 
   return (
-    <section id="projects" className="py-32">
+    <section id="projects" className="py-32 md:py-40 border-t border-border">
       <div className="container mx-auto px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-4">{t.projects.label}</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight">
-            {t.projects.title}
-          </h2>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 md:mb-28">
+          <div className="md:col-span-4 flex items-start gap-3">
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground tabular-nums pt-1">(02)</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">
+              {t.projects.label}
+            </span>
+          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-8 font-heading text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter leading-[0.95]"
+          >
+            {t.projects.title.replace(/\.$/, "")}
+            <span className="text-primary">.</span>
+          </motion.h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="border-t border-border">
           {projects.map((project, i) => (
             <motion.a
               key={project.title}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-card rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 md:py-14 border-b border-border hover:bg-secondary/40 transition-colors duration-500 px-2 -mx-2 items-baseline"
             >
-              <div className="flex items-start justify-between mb-5">
-                <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
-              </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+              <span className="md:col-span-1 text-xs uppercase tracking-[0.18em] text-muted-foreground tabular-nums">
+                0{i + 1}
+              </span>
+              <h3 className="md:col-span-5 font-heading text-3xl md:text-5xl font-medium tracking-tighter group-hover:text-primary transition-colors duration-500 flex items-center gap-3">
+                {project.title}
+                <ArrowUpRight className="w-6 h-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
+              </h3>
+              <p className="md:col-span-3 text-muted-foreground text-sm leading-relaxed">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${statusStyles[project.status]}`}>
+              <div className="md:col-span-3 flex md:justify-end items-center gap-6">
+                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground tabular-nums">
+                  {project.year}
+                </span>
+                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   <span className={`w-1.5 h-1.5 rounded-full ${statusDot[project.status]}`} />
                   {t.projects.status[project.status]}
                 </span>
