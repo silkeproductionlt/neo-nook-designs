@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Send, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
 
@@ -14,100 +14,102 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32">
+    <section id="contact" className="py-32 md:py-40 border-t border-border">
       <div className="container mx-auto px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-sm font-medium text-primary tracking-widest uppercase mb-4">{t.contact.label}</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            {t.contact.title}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            {t.contact.subtitle}
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 md:mb-24">
+          <div className="md:col-span-4 flex items-start gap-3">
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground tabular-nums pt-1">(04)</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground pt-1">
+              {t.contact.label}
+            </span>
+          </div>
           <motion.div
-            className="flex flex-col justify-center gap-10"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-8"
           >
-            <div className="flex items-center gap-5">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <Mail className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">{t.contact.email}</p>
-                <p className="text-foreground font-medium">etec.app@outlook.com</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-5">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">{t.contact.location}</p>
-                <p className="text-foreground font-medium">{t.contact.locationValue}</p>
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <p className="font-heading text-xl font-bold mb-2">{t.contact.closingStatement}</p>
-              <p className="text-muted-foreground text-sm">{t.contact.closingDesc}</p>
-            </div>
+            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.95]">
+              {t.contact.closingStatement.replace(/\.$/, "")}
+              <span className="text-primary">.</span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground max-w-lg">
+              {t.contact.subtitle}
+            </p>
           </motion.div>
+        </div>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="bg-card rounded-2xl p-8 border border-border flex flex-col gap-5 shadow-sm"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-          >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+          <div className="md:col-span-5 flex flex-col gap-10 border-t border-border pt-10">
             <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-widest block mb-2">{t.contact.name}</label>
+              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
+                {t.contact.email}
+              </p>
+              <a
+                href="mailto:etec.app@outlook.com"
+                className="font-heading text-2xl md:text-3xl tracking-tight text-foreground hover:text-primary transition-colors inline-flex items-center gap-2 group"
+              >
+                etec.app@outlook.com
+                <ArrowUpRight className="w-5 h-5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </a>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
+                {t.contact.location}
+              </p>
+              <p className="font-heading text-xl text-foreground">{t.contact.locationValue}</p>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
+              {t.contact.closingDesc}
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="md:col-span-7 flex flex-col gap-8 border-t border-border pt-10"
+          >
+            <div className="flex flex-col gap-2 border-b border-border pb-4 focus-within:border-primary transition-colors">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                {t.contact.name}
+              </label>
               <input
                 type="text"
                 required
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+                className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/50 focus:outline-none text-base"
                 placeholder={t.contact.namePlaceholder}
               />
             </div>
-            <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-widest block mb-2">{t.contact.emailLabel}</label>
+            <div className="flex flex-col gap-2 border-b border-border pb-4 focus-within:border-primary transition-colors">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                {t.contact.emailLabel}
+              </label>
               <input
                 type="email"
                 required
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+                className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/50 focus:outline-none text-base"
                 placeholder={t.contact.emailPlaceholder}
               />
             </div>
-            <div>
-              <label className="text-xs text-muted-foreground uppercase tracking-widest block mb-2">{t.contact.message}</label>
+            <div className="flex flex-col gap-2 border-b border-border pb-4 focus-within:border-primary transition-colors">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                {t.contact.message}
+              </label>
               <textarea
                 required
-                rows={4}
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all resize-none"
+                rows={3}
+                className="w-full bg-transparent text-foreground placeholder:text-muted-foreground/50 focus:outline-none text-base resize-none"
                 placeholder={t.contact.messagePlaceholder}
               />
             </div>
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl gradient-bg text-primary-foreground font-heading text-sm font-semibold tracking-wide hover:opacity-90 transition-opacity duration-200 shadow-lg shadow-primary/25"
+              className="group self-start inline-flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-foreground border border-border rounded-full px-6 py-3.5 hover:border-primary hover:text-primary transition-colors duration-300"
             >
               {submitted ? t.contact.sent : t.contact.send}
-              <ArrowRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>
