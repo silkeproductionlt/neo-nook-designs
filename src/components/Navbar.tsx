@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import LangSwitcher from "@/components/LangSwitcher";
+import NavItems from "@/components/NavItems";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { getLenis } from "@/hooks/useLenis";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,6 +16,10 @@ const Navbar = () => {
     { label: t.nav.process, href: "#process" },
     { label: t.nav.contact, href: "#contact" },
   ];
+
+  const ids = useMemo(() => navItems.map((n) => n.href.slice(1)), [t]);
+  const activeId = useActiveSection(ids);
+  const activeHref = activeId ? `#${activeId}` : null;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,6 +35,7 @@ const Navbar = () => {
     if (lenis) lenis.scrollTo(target, { offset: -80, duration: 1.4 });
     else target.scrollIntoView({ behavior: "smooth" });
   };
+
 
   return (
     <nav
