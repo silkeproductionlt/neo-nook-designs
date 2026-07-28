@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import LangSwitcher from "@/components/LangSwitcher";
+import NavItems from "@/components/NavItems";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { getLenis } from "@/hooks/useLenis";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,6 +16,10 @@ const Navbar = () => {
     { label: t.nav.process, href: "#process" },
     { label: t.nav.contact, href: "#contact" },
   ];
+
+  const ids = useMemo(() => navItems.map((n) => n.href.slice(1)), [t]);
+  const activeId = useActiveSection(ids);
+  const activeHref = activeId ? `#${activeId}` : null;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -30,6 +36,7 @@ const Navbar = () => {
     else target.scrollIntoView({ behavior: "smooth" });
   };
 
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -44,19 +51,8 @@ const Navbar = () => {
           </span>
         </button>
 
-        <ul className="hidden md:flex items-center gap-10">
-          {navItems.map((item, i) => (
-            <li key={item.href}>
-              <button
-                onClick={() => handleClick(item.href)}
-                className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2"
-              >
-                <span className="text-[10px] opacity-40 tabular-nums">0{i + 1}</span>
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <NavItems items={navItems} activeHref={activeHref} onSelect={handleClick} />
+
 
         <div className="flex items-center gap-4">
           <LangSwitcher />
