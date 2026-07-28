@@ -51,19 +51,8 @@ const Navbar = () => {
           </span>
         </button>
 
-        <ul className="hidden md:flex items-center gap-10">
-          {navItems.map((item, i) => (
-            <li key={item.href}>
-              <button
-                onClick={() => handleClick(item.href)}
-                className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-2"
-              >
-                <span className="text-[10px] opacity-40 tabular-nums">0{i + 1}</span>
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <NavItems items={navItems} activeHref={activeHref} onSelect={handleClick} />
+
 
         <div className="flex items-center gap-4">
           <LangSwitcher />
