@@ -1,39 +1,53 @@
 import { useEffect, useState } from "react";
 
 /**
- * Tracks which section is currently in view using IntersectionObserver.
+ * Tracks which section is currently in view by picking the section whose
+ * center is closest to the viewport center. Uses a rAF-throttled scroll
+ * listener so fast scrolling produces a single, continuous target instead of
+ * stepping through every intermediate section.
  * @param ids section ids (without the leading "#")
  */
-export const useActiveSection = (ids: string[], rootMargin = "-45% 0px -50% 0px") => {
+export const useActiveSection = (ids: string[]) => {
   const [active, setActive] = useState<string | null>(ids[0] ?? null);
 
   useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
+    let frame = 0;
 
-    if (!elements.length) return;
+    const compute = () => {
+      frame = 0;
+      const anchor = window.innerHeight * 0.4;
+      let bestId: string | null = null;
+      let bestDist = Infinity;
 
-    const visible = new Map<string, number>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
-          else visible.delete(entry.target.id);
-        });
-
-        if (visible.size) {
-          const best = [...visible.entries()].sort((a, b) => b[1] - a[1])[0][0];
-          setActive(best);
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const box = el.getBoundingClientRect();
+        // distance from the anchor line to the section's visible span
+        const dist =
+          box.top > anchor ? box.top - anchor : box.bottom < anchor ? anchor - box.bottom : 0;
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestId = id;
         }
-      },
-      { rootMargin, threshold: [0, 0.25, 0.5, 0.75, 1] },
-    );
+      }
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [ids.join(","), rootMargin]);
+      if (bestId) setActive((prev) => (prev === bestId ? prev : bestId));
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(compute);
+    };
+
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [ids.join(",")]);
 
   return active;
 };
