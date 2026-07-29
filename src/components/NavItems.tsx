@@ -18,7 +18,7 @@ interface NavItemsProps {
  */
 const NavItems = ({ items, activeHref, onSelect }: NavItemsProps) => {
   const listRef = useRef<HTMLUListElement>(null);
-  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const itemRefs = useRef<Record<string, HTMLSpanElement | null>>({});
   const [rect, setRect] = useState<{ left: number; width: number } | null>(null);
 
   const measure = useCallback(() => {
@@ -27,8 +27,7 @@ const NavItems = ({ items, activeHref, onSelect }: NavItemsProps) => {
     if (!list || !el) return;
     const listBox = list.getBoundingClientRect();
     const box = el.getBoundingClientRect();
-    const width = box.width * 0.78;
-    setRect({ left: box.left - listBox.left + (box.width - width) / 2, width });
+    setRect({ left: box.left - listBox.left, width: box.width });
   }, [activeHref]);
 
   useLayoutEffect(measure, [measure, items]);
@@ -45,16 +44,19 @@ const NavItems = ({ items, activeHref, onSelect }: NavItemsProps) => {
         return (
           <li key={item.href}>
             <button
-              ref={(el) => {
-                itemRefs.current[item.href] = el;
-              }}
               onClick={() => onSelect(item.href)}
               className={`relative pb-2 text-xs uppercase tracking-[0.18em] transition-colors duration-300 flex items-center gap-2 ${
                 isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <span className="text-[10px] opacity-40 tabular-nums">0{i + 1}</span>
-              {item.label}
+              <span
+                ref={(el) => {
+                  itemRefs.current[item.href] = el;
+                }}
+              >
+                {item.label}
+              </span>
             </button>
           </li>
         );
@@ -66,7 +68,7 @@ const NavItems = ({ items, activeHref, onSelect }: NavItemsProps) => {
           className="pointer-events-none absolute bottom-0 left-0 h-[2px] rounded-full bg-primary"
           style={{ boxShadow: "0 0 6px hsl(var(--primary) / 0.55), 0 0 16px hsl(var(--primary) / 0.3)" }}
           initial={false}
-          animate={{ x: rect.left, width: rect.width }}
+          animate={{ x: rect.left, width: rect.width, opacity: activeHref ? 1 : 0 }}
           transition={{ type: "spring", stiffness: 520, damping: 30, mass: 0.7 }}
         />
       )}
