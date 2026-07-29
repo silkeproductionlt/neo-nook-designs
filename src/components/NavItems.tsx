@@ -67,7 +67,7 @@ const NavItems = ({ items, activeHref, onSelect }: NavItemsProps) => {
           style={{ boxShadow: "0 0 6px hsl(var(--primary) / 0.55), 0 0 16px hsl(var(--primary) / 0.3)" }}
           initial={false}
           animate={{ x: rect.left, width: rect.width }}
-          transition={{ type: "spring", stiffness: 520, damping: 30, mass: 0.7 }}
+          transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
         />
       )}
     </ul>
