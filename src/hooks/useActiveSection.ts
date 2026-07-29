@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 /**
- * Tracks which section is currently in view using IntersectionObserver.
+ * Tracks which section is currently in view from a stable viewport anchor.
  * @param ids section ids (without the leading "#")
  */
-export const useActiveSection = (ids: string[], rootMargin = "-45% 0px -50% 0px") => {
+export const useActiveSection = (ids: string[], anchorRatio = 0.36) => {
   const [active, setActive] = useState<string | null>(ids[0] ?? null);
 
   useEffect(() => {
@@ -14,26 +14,41 @@ export const useActiveSection = (ids: string[], rootMargin = "-45% 0px -50% 0px"
 
     if (!elements.length) return;
 
-    const visible = new Map<string, number>();
+    let rafId = 0;
+    let lastActive = active;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
-          else visible.delete(entry.target.id);
-        });
+    const updateActive = () => {
+      rafId = 0;
+      const anchorY = window.scrollY + window.innerHeight * anchorRatio;
+      let next = elements[0].id;
 
-        if (visible.size) {
-          const best = [...visible.entries()].sort((a, b) => b[1] - a[1])[0][0];
-          setActive(best);
-        }
-      },
-      { rootMargin, threshold: [0, 0.25, 0.5, 0.75, 1] },
-    );
+      for (const element of elements) {
+        const top = element.offsetTop;
+        if (top <= anchorY) next = element.id;
+        else break;
+      }
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [ids.join(","), rootMargin]);
+      if (next !== lastActive) {
+        lastActive = next;
+        setActive(next);
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, [ids.join(","), anchorRatio]);
 
   return active;
 };
