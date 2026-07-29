@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * @param ids section ids (without the leading "#")
  */
 export const useActiveSection = (ids: string[], anchorRatio = 0.36) => {
-  const [active, setActive] = useState<string | null>(ids[0] ?? null);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     const elements = ids
@@ -15,12 +15,12 @@ export const useActiveSection = (ids: string[], anchorRatio = 0.36) => {
     if (!elements.length) return;
 
     let rafId = 0;
-    let lastActive = active;
+    let lastActive: string | null = active;
 
     const updateActive = () => {
       rafId = 0;
       const anchorY = window.scrollY + window.innerHeight * anchorRatio;
-      let next = elements[0].id;
+      let next: string | null = null;
 
       for (const element of elements) {
         const top = element.offsetTop;
