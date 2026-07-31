@@ -14,14 +14,34 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-end overflow-hidden pt-32 pb-16"
     >
+      {/* Drifting radial glow */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, x: [0, 60, -40, 0], y: [0, -40, 30, 0] }}
+        transition={{
+          opacity: { duration: 2 },
+          x: { duration: 28, repeat: Infinity, ease: "easeInOut" },
+          y: { duration: 34, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="pointer-events-none absolute -top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px]"
+        style={{
+          background:
+            "radial-gradient(circle at center, hsl(var(--primary) / 0.10) 0%, transparent 62%)",
+        }}
+      />
+
       {/* Grid lines */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
           backgroundImage:
             "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
+          maskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent)",
         }}
       />
+
 
       <div className="relative z-10 container mx-auto px-6 w-full">
         {/* Meta row */}
