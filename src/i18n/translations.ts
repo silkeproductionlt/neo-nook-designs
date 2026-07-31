@@ -15,6 +15,8 @@ export const translations = {
       headlineAccent: "experiences.",
       subtitle: "A skilled front-end team crafting fast, responsive, and visually refined digital products with precision and care.",
       viewProjects: "See Our Work",
+      scroll: "Scroll",
+
       getInTouch: "Get in Touch",
     },
     about: {
@@ -114,6 +116,8 @@ export const translations = {
       headlineAccent: "patirtis.",
       subtitle: "Profesionali front-end komanda, kurianti greitus, jautrius ir vizualiai tobulus skaitmeninius produktus.",
       viewProjects: "Mūsų darbai",
+      scroll: "Slinkti",
+
       getInTouch: "Susisiekite",
     },
     about: {
