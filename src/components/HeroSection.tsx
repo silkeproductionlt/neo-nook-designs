@@ -103,7 +103,27 @@ const HeroSection = () => {
             </button>
           </div>
         </motion.div>
+
+        {/* Scroll cue */}
+        <motion.button
+          onClick={() => scrollTo("#services")}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="group mt-14 md:mt-16 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors"
+          aria-label={t.hero.scroll ?? "Scroll"}
+        >
+          <span className="relative block w-[1px] h-10 bg-border overflow-hidden">
+            <motion.span
+              className="absolute inset-x-0 top-0 h-4 bg-primary"
+              animate={{ y: ["-100%", "250%"] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </span>
+          {t.hero.scroll ?? "Scroll"}
+        </motion.button>
       </div>
+
     </section>
   );
 };
