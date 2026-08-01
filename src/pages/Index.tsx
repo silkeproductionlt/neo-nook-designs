@@ -8,12 +8,13 @@ import ProcessSection from "@/components/ProcessSection";
 
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import DevBanner from "@/components/DevBanner";
 
 const Index = () => {
   useLenis();
   return (
     <div className="min-h-screen bg-background">
-
+      <DevBanner />
       <Navbar />
       <HeroSection />
       
