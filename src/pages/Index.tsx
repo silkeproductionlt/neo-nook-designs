@@ -16,7 +16,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
 
-      <NoticeBar />
+      {SHOW_NOTICE_BAR && <NoticeBar />}
       <Navbar />
       <HeroSection />
       
