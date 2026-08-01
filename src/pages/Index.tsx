@@ -1,4 +1,5 @@
 import { SHOW_NOTICE_BAR } from "@/config/featureFlags";
+import Navbar from "@/components/Navbar";
 import NoticeBar from "@/components/NoticeBar";
 import HeroSection from "@/components/HeroSection";
 import { useLenis } from "@/hooks/useLenis";
