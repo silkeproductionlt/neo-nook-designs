@@ -13,7 +13,6 @@ const Index = () => {
   useLenis();
   return (
     <div className="min-h-screen bg-background">
-
       <Navbar />
       <HeroSection />
       

@@ -99,6 +99,9 @@ export const translations = {
     footer: {
       rights: "© 2026 Etevox Media. All rights reserved.",
     },
+    devBanner: {
+      text: "Website in development — some features may be unavailable.",
+    },
   },
   lt: {
     nav: {
@@ -197,6 +200,9 @@ export const translations = {
     },
     footer: {
       rights: "© 2026 Etevox Media. Visos teisės saugomos.",
+    },
+    devBanner: {
+      text: "Svetainė kuriama — kai kurios funkcijos gali būti nepasiekiamos.",
     },
   },
 } as const;
