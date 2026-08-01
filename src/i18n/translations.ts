@@ -9,7 +9,9 @@ export const translations = {
       contact: "Contact",
       process: "Process",
     },
-    hero: {
+    notice: {
+      message: "Website in progress — some features may be inaccessible.",
+    },
       label: "Front-End Development Studio",
       headline: "We build modern web",
       headlineAccent: "experiences.",
@@ -108,7 +110,9 @@ export const translations = {
       contact: "Kontaktai",
       process: "Procesas",
     },
-    hero: {
+    notice: {
+      message: "Svetainė kuriama — kai kurios funkcijos gali būti nepasiekiamos.",
+    },
       label: "Front-End kūrimo studija",
       headline: "Kuriame modernias žiniatinklio",
       headlineAccent: "patirtis.",
