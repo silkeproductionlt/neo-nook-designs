@@ -14,34 +14,14 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-end overflow-hidden pt-32 pb-16"
     >
-      {/* Drifting radial glow */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: [0, 60, -40, 0], y: [0, -40, 30, 0] }}
-        transition={{
-          opacity: { duration: 2 },
-          x: { duration: 28, repeat: Infinity, ease: "easeInOut" },
-          y: { duration: 34, repeat: Infinity, ease: "easeInOut" },
-        }}
-        className="pointer-events-none absolute -top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] max-w-[900px] max-h-[900px]"
-        style={{
-          background:
-            "radial-gradient(circle at center, hsl(var(--primary) / 0.10) 0%, transparent 62%)",
-        }}
-      />
-
       {/* Grid lines */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
           backgroundImage:
             "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent)",
         }}
       />
-
 
       <div className="relative z-10 container mx-auto px-6 w-full">
         {/* Meta row */}
@@ -103,27 +83,7 @@ const HeroSection = () => {
             </button>
           </div>
         </motion.div>
-
-        {/* Scroll cue */}
-        <motion.button
-          onClick={() => scrollTo("#services")}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="group mt-14 md:mt-16 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors"
-          aria-label={t.hero.scroll ?? "Scroll"}
-        >
-          <span className="relative block w-[1px] h-10 bg-border overflow-hidden">
-            <motion.span
-              className="absolute inset-x-0 top-0 h-4 bg-primary"
-              animate={{ y: ["-100%", "250%"] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </span>
-          {t.hero.scroll ?? "Scroll"}
-        </motion.button>
       </div>
-
     </section>
   );
 };

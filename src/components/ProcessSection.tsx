@@ -33,25 +33,26 @@ const ProcessSection = () => {
           </motion.h2>
         </div>
 
-        <div className="border-t border-border">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-border border border-border">
           {steps.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 py-8 md:py-10 border-b border-border hover:bg-background/60 transition-colors duration-500 px-2 -mx-2"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-background p-8 md:p-10 flex flex-col gap-6 min-h-[240px]"
             >
-              <span className="md:col-span-1 font-heading text-3xl md:text-4xl font-medium text-outline tabular-nums leading-none">
-                0{i + 1}
-              </span>
-              <h3 className="md:col-span-5 font-heading text-2xl md:text-4xl font-medium tracking-tight group-hover:text-primary transition-colors duration-500">
-                {s.title}
-              </h3>
-              <p className="md:col-span-5 md:col-start-8 text-muted-foreground leading-relaxed text-base max-w-md">
-                {s.desc}
-              </p>
+              <div className="flex items-center justify-between">
+                <span className="font-heading text-5xl font-medium text-outline tabular-nums">
+                  0{i + 1}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full accent-dot opacity-70" />
+              </div>
+              <div>
+                <h3 className="font-heading text-xl font-medium mb-2 tracking-tight">{s.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
