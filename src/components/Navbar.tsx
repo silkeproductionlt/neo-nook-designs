@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-9 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "glass-surface border-b border-border py-3" : "py-6 bg-transparent"
       }`}
     >
