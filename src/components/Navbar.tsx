@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import LangSwitcher from "@/components/LangSwitcher";
 import NavItems from "@/components/NavItems";
+import DevBanner from "@/components/DevBanner";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { getLenis } from "@/hooks/useLenis";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -39,10 +40,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-8 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "glass-surface border-b border-border py-3" : "py-6 bg-transparent"
       }`}
     >
+      <DevBanner />
       <div className="container mx-auto flex items-center justify-between px-6">
         <button onClick={() => handleClick("#home")} className="flex items-center gap-2.5 group">
           <span className="w-1.5 h-1.5 rounded-full accent-dot" />
