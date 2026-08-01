@@ -12,6 +12,7 @@ export const translations = {
     notice: {
       message: "Website in progress — some features may be inaccessible.",
     },
+    hero: {
       label: "Front-End Development Studio",
       headline: "We build modern web",
       headlineAccent: "experiences.",
@@ -113,6 +114,7 @@ export const translations = {
     notice: {
       message: "Svetainė kuriama — kai kurios funkcijos gali būti nepasiekiamos.",
     },
+    hero: {
       label: "Front-End kūrimo studija",
       headline: "Kuriame modernias žiniatinklio",
       headlineAccent: "patirtis.",
