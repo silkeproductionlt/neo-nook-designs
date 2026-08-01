@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import NoticeBar from "@/components/NoticeBar";
 import HeroSection from "@/components/HeroSection";
 import { useLenis } from "@/hooks/useLenis";
 
@@ -14,6 +15,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
 
+      <NoticeBar />
       <Navbar />
       <HeroSection />
       
