@@ -1,4 +1,3 @@
-import { SHOW_NOTICE_BAR } from "@/config/featureFlags";
 import Navbar from "@/components/Navbar";
 import NoticeBar from "@/components/NoticeBar";
 import HeroSection from "@/components/HeroSection";
@@ -16,7 +15,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
 
-      {SHOW_NOTICE_BAR && <NoticeBar />}
+      <NoticeBar />
       <Navbar />
       <HeroSection />
       
